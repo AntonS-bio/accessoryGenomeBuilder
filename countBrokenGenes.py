@@ -9,11 +9,11 @@ import multiprocessing as mp
 from Bio import SeqIO
 
 
-import configs.Kp as KpConfig
-config=KpConfig.configData()
+# import configs.Kp as KpConfig
+# config=KpConfig.configData()
 
-wd=config.outputDir
-samplesDir=config.samplesDir
+# wd=config.outputDir
+# samplesDir=config.samplesDir
 
 def splitBlastID(idValue):
     sampleData=idValue.replace("::",":").split(":")

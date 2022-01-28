@@ -62,7 +62,7 @@ def LoadFastasToMemory():
                     AssemblySequences[node].append(record)
            
 def runBlast(graphNode):
-    print(graphNode)
+    #print(graphNode)
     nodeGenesAMR={} #key=gene coordinates, values=blast result
     global allNodes, geneLengths, AssemblySequences
     #for gene in allNodes[graphNode]:
@@ -88,9 +88,9 @@ def runBlast(graphNode):
             nodeGenesAMR[record.id]=bestMatch
         if graphNode in betweenNodes:
             break #there is no need to do blast search for every gene in betweenClique as they are all the same.
-    print("Results:"+str(len(nodeGenesAMR)))
-    if len(nodeGenesAMR)>0:
-        print(nodeGenesAMR)
+    #print("Results:"+str(len(nodeGenesAMR)))
+    # if len(nodeGenesAMR)>0:
+    #     print(nodeGenesAMR)
     return nodeGenesAMR
 
 
@@ -178,7 +178,7 @@ def run(AMRDir, AMRfile, outputDir, PassedSamplesDir):
            if len(result)>0:
                joinedWithinResults={**joinedWithinResults, **result}
 
-        pool=mp.Pool(50)
+        pool=mp.Pool(20)
         betweenResults=pool.map(runBlast, betweenNodes)
         pool.close()
         pool.join()
@@ -197,7 +197,7 @@ def run(AMRDir, AMRfile, outputDir, PassedSamplesDir):
         #sys.exit()
         for key in joinedWithinResults:
             values=joinedWithinResults[key].split("\t")
-            print(key+'\t'.join(refGenesMetaData[values[3]]))
+            #print(key+'\t'.join(refGenesMetaData[values[3]]))
 
         newMetaData=open(outputDir+"MetaData.tsv","w")
         allResults={**joinedWithinResults, **joinedBetweenResults}

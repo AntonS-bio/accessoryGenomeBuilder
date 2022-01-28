@@ -23,7 +23,7 @@ class configData:
         self.refSample="some/dir" #FileName without .fasta. This will not impact results, algorithm simply takes genes from it to start finding core genes
         self.samplesDir="some/dir"  #Directory with fasta files
         self.sampleGffDir="some/dir" #Directory with gff files
-        self.sampleGffDir="AMRDir" #Directory with fasta for AMR genes (optional)
+        self.AMRDir="AMRDir" #Directory with fasta for AMR genes (optional)
         self.AMRfile="NCBI_refgenes_16-Jul-20.csv" #"NCBI's AMR ref genes file (optional)"
         self.postfix=".fasta" #extension of fasta files (fna/fasta)
         self.blastIdentityThreshold=95 #min required identity between genes to be considered "same" genes and grouped together 

@@ -1,14 +1,14 @@
 
-import configs.Kp as KpConfig
-config=KpConfig.configData()
+# import configs.Kp as KpConfig
+# config=KpConfig.configData()
 
-wd=config.wd
-outputDir=config.outputDir
+# wd=config.wd
+# outputDir=config.outputDir
 
-tempDir=config.tempDir
-refSample=config.refSample
-samplesDir=config.samplesDir
-sampleGffDir=config.sampleGffDir
+# tempDir=config.tempDir
+# refSample=config.refSample
+# samplesDir=config.samplesDir
+# sampleGffDir=config.sampleGffDir
 
 newGffDir="destination for gff files where 'hypothetical' is replaced with graph vertex id."
 tempDir=wd+"tempNCBI_Subset/"

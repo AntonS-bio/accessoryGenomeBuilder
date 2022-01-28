@@ -2,8 +2,6 @@
 
 def run(wd, sampleGffDir, outputDir):
 
-    print("groupGenesToMge()")
-
     def sortGenomicFeatures(data):#{sample, {chr, [ [start, end] ] }}
         for sample in data.keys():
             for chr in data[sample].keys():

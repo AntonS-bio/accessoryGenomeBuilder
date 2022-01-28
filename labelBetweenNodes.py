@@ -1,7 +1,7 @@
-import configs.Kp as KpConfig
-config=KpConfig.configData()
-outputDir=config.outputDir
-sampleGffDir=config.sampleGffDir
+# import configs.Kp as KpConfig
+# config=KpConfig.configData()
+# outputDir=config.outputDir
+# sampleGffDir=config.sampleGffDir
 
 
 def splitBlastID(idValue):

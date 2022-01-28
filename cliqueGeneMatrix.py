@@ -1,9 +1,5 @@
 #takes file and generate a matrix for PCA analysis. Matrix consists of rows as clique or file ids and genes RefSeq from prokka as columns
 
-import configs.Kp as KpConfig
-config=KpConfig.configData()
-
-dataDir=config.outputDir
 cliquesAssemblies={} #clique : set(files)
 assemblyCliques={} #assembly : set(cliques)
 
@@ -64,4 +60,3 @@ def run(dataDir):
     for line in outputMatrixAssemblies:
         output.write('\t'.join(str(f) for f in line)+"\n")
 
-run(dataDir)

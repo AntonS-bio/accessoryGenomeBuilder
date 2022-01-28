@@ -2,14 +2,6 @@ import sys
 import subprocess
 
 
-import configs.Kp as KpConfig
-config=KpConfig.configData()
-wd=config.wd
-samplesDir=config.samplesDir
-sampleGffDir=config.sampleGffDir
-
-
-
 vertexName=sys.argv[1] #either W### or B####
 blastSubject=sys.argv[2] #target for search, fasta file
 

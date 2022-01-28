@@ -3,12 +3,6 @@ from SampleMetadata import Metadata as sm
 from VertexMetadata import Metadata as vm
 
 
-import configs.Kp as KpConfig
-config=KpConfig.configData()
-outputDir=config.outputDir
-sampleGffDir=config.sampleGffDir
-
-
 def splitBlastID(idValue):
     sampleData=idValue.replace("::",":").split(":")
     sampleFile=sampleData[0]
@@ -35,16 +29,16 @@ def getGeneProduct(data): #data=[sampleID, [ {key=W###/B###, value=[sample::chr:
                             geneProductDic[lineVertexID]=value.replace("product=","").strip()
     return geneProductDic
 
-def run(PassedSampleGffDir, PassedOutputDir):
-    global outputDir
-    outputDir=PassedOutputDir
+def run(config):
+    outputDir=config.outputDir
     global sampleGffDir
-    sampleGffDir=PassedSampleGffDir
+    sampleGffDir=config.sampleGffDir
+    metaDataDir=config.wd
 
 
     print("Loading sample metadata")
     rawMetaData={} 
-    for line in open(outputDir+"sampleMetaData.txt"):
+    for line in open(metaDataDir+"sampleMetaData.txt"):
         values=line.strip().split("\t")
         rawMetaData[values[0]]=sm(values[0], values[1], values[2], values[3])
 
@@ -83,8 +77,8 @@ def run(PassedSampleGffDir, PassedOutputDir):
     
     geneVertices=[] #this is for legacy reason, the annotation speed has been improved a lot, but rest of logic left unchanged.
     for key in vertexProductsDic.keys():
-        if vertexProductsDic[key]=="":
-            print(key)
+        # if vertexProductsDic[key]=="":
+        #     print(key)
         geneVertices.append([key, vertexProductsDic[key]])
 
 
@@ -115,12 +109,12 @@ def run(PassedSampleGffDir, PassedOutputDir):
             verticesMetadata[geneVertex]=metadata
 
         print("Annotating nonGene verices")
-        nonGeneMetadata: Dict[str, vm]={}
+        nonGeneMetadata={} #key=str, value=vm
         originalVertexCount=len(geneVerticesProducts)
         print(len(geneVerticesProducts))
         while len(geneVerticesProducts)>0:
             geneVertex=list(geneVerticesProducts.keys())[0]
-            print(geneVertex+"\t"+str(1-len(geneVerticesProducts)/originalVertexCount))
+            #print(geneVertex+"\t"+str(1-len(geneVerticesProducts)/originalVertexCount))
             verticesToRemove=set()
             if geneVertex in betweenVertices and betweenVertices[geneVertex] not in nonGeneMetadata:
                 betweenMetaData=vm("between", betweenVertices[geneVertex])
